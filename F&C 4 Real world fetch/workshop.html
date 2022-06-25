@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real world fetch</title>
+  </head>
+  <body>
+    <!------------------ 4 ------------------>
+
+    <!-- <form>
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" /><br />
+
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lname" name="lname" /><br /><br />
+
+      <button type="submit">Submit</button>
+    </form> -->
+
+    <!------------------ Work Shop ------------------>
+
+    <h1>Pokemon Search</h1>
+
+    <form>
+      <label for="pokemon">Pokemon Name:</label>
+      <input type="search" id="pokemon" name="pokemon" required />
+      <button type="submit">Search</button>
+    </form>
+
+    <div>
+      <h2 class="result"></h2>
+      <img src="" class="img" />
+    </div>
+
+    <script>
+    // ------------------ 1 ------------------
+
+      //  fetch("https://echo.oliverjam.workers.dev/status/404")
+      //  .then((response) => console.log(response))
+      //  .catch((err) => console.log(err))
+
+    // ------------------ 2 ------------------
+
+      // fetch("https://echo.oliverjam.workers.dev/status/404")
+      // .then((res) => {
+      //   if(res.ok != true) {
+      //     throw(res.status);
+      //   }
+      //   console.log(res)
+      // })
+      // .catch((err) => console.log(err))
+
+    // ------------------ 3 ------------------ POST
+
+      // fetch("https://echo.oliverjam.workers.dev/json", {
+      //   method: 'POST',
+      //   headers: {
+      //     'content-type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     name: 'User1'
+      //   })
+      // }).then(res => {
+      //   if(!res.ok) {
+      //     throw new Error(res.status)
+      //   }
+      //   return res.json();
+      // })
+      // .then(json => console.log(json))
+      // .catch((error) => console.error(error))
+
+    // ------------------ 4 ------------------
+
+      // const myForm = document.querySelector("form");
+
+      // myForm.addEventListener("submit", (event) => {
+      //   event.preventDefault();
+      //   const fname = document.querySelector("#fname").value;
+      //   const lname = document.querySelector("#lname").value;
+
+      //   fetch("https://echo.oliverjam.workers.dev/json", {
+      //     method: "POST",
+      //     headers: { "content-type": "application/json" },
+      //     body: JSON.stringify({
+      //       firstname: `${fname}`,
+      //       lastname: `${lname}`,
+      //     }),
+      //   })
+      //     .then((res) => {
+      //       if (!res.ok) {
+      //         throw new Error(res.status);
+      //       }
+      //       return res.json();
+      //     })
+      //     .then((json) => console.log(json))
+      //     .catch((error) => console.error(error));
+      // });
+
+    // ------------------ 5 ------------------
+
+      // const myForm = document.querySelector("form");
+
+      // myForm.addEventListener("submit", (event) => {
+      //   event.preventDefault();
+      //   const formdata = new FormData(myForm);
+      //   const formjson = Object.fromEntries(formdata);
+
+      //   fetch("https://echo.oliverjam.workers.dev/json", {
+      //     method: "POST",
+      //     headers: { "content-type": "application/json" },
+      //     body: JSON.stringify(formjson),
+      //   })
+      //     .then((res) => {
+      //       if (!res.ok) {
+      //         throw new Error(res.status);
+      //       }
+      //       return res.json();
+      //     })
+      //     .then((json) => console.log(json))
+      //     .catch((error) => console.error(error));
+      // });
+
+    // ------------------ Work Shop ------------------
+
+      const myForm = document.querySelector("form");
+      const result = document.querySelector(".result");
+      const img = document.querySelector(".img");
+
+      myForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        img.src = "";
+
+        const pokemon = document.querySelector("#pokemon").value;
+        const api = fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+        api
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(res.status);
+            }
+            return res.json();
+          })
+          .then((data) => {
+            result.textContent = pokemon;
+            img.src = data.sprites.front_default;
+            console.log(data);
+          })
+          .catch((err) => {
+            if (err.message === "404") {
+              result.textContent = `INVALID POKEMON: ${pokemon}`;
+              img.src = "";
+            }
+            console.error(err);
+          });
+      });
+    </script>
+  </body>
+</html>
