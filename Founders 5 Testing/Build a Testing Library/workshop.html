@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Testing</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+
+    <script>
+      // Build A Testing Library
+
+      // The function we're testing
+      function square(x) {
+        return x * x;
+      }
+
+      // 1. ---------------------------------------- Begin to automate ---------------------------------------- 
+
+      // const actual = square(2);
+      // const expected = 9;
+      // if (actual === expected) {
+      //   console.log(`Passed, Expected "${expected}" GOT "${actual}"`);
+      // } else {
+      //   console.error(`Failed, Got "${expected}" but expected "${actual}"`);
+      // }
+
+      // 2. ---------------------------------------- Make it reusable ----------------------------------------
+
+      function equal(actual, expected, message) {
+        if (actual === expected) {
+          const defaultMessage = `Passed: Expected "${expected}", Got "${actual}"`;
+          console.info(message || defaultMessage)
+        } else {
+          const defaultMessage = `Failed: Got "${actual}" but Expected "${expected}"`
+          console.error(message || defaultMessage)
+        }
+      }
+
+      // const actual = square(2);
+      // const expected = 4; 
+      // equal(actual, expected);
+
+      // const actual1 = square(3.5);
+      // const expected1 = 777; // Deliberately wrong answer to cause test to fail
+      // equal(actual1, expected1);
+
+      // 3. 
+
+      function notEqual (actual, expected, message) {
+        if (actual !== expected) {
+          const defaultMessage = `Passed: Actual "${actual}" is different to Expected "${expected}"`;
+          console.info(message || defaultMessage)
+        } else {
+          const defaultMessage = `Failed: Actual "${actual}" is the same as Expected "${expected}"`;
+          console.error(message || defaultMessage);
+        }
+      }
+
+      // const actual = square(3);
+      // const expected = 10;
+      // notEqual(actual, expected);
+
+      // 4. ---------------------------------------- Separating tests ----------------------------------------
+
+      function test (label, testfn) {
+        console.group(label);
+        testfn();
+        console.groupEnd();
+      }
+
+      // test("Correctly squares integers", () => {
+      //   const actual = square(2);
+      //   const expected = 4;
+      //   equal(actual, expected);
+      // })
+
+      // test("Correctly squares decimals", () => {
+      //   const actual = square(3.5);
+      //   const expected = 12.5;
+      //   equal(actual, expected);
+      // })
+
+      // 5. ---------------------------------------- Custom messages ----------------------------------------
+
+      test("Correctly squares integers", () => {
+        const actual = square(2);
+        const expected = 4;
+        equal(actual, expected, `square(2) should return 4 and got ${actual}`);
+      })
+
+    </script>
+  </body>
+</html>
