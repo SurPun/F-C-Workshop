@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+    /*
+
+      // 1.
+      const value = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+
+      console.log(value);
+
+      // 2.
+      value.then((result) => console.log(result));
+
+      // 3.
+      value.then((result) => result.json()).then((body) => console.log(body));
+
+      // 4.
+      const value2 = fetch();
+
+      value2
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error));
+
+        */
+
+    // ---------------------------- WorkShop ----------------------------
+
+      // Task 1
+      
+      function getUser(id) {
+        const user = "https://api.github.com/users/";
+
+        return fetch(user + id).then((result) => result.json());
+      }
+
+      getUser("oliverjam")
+        .then((body) => console.log(body))
+        .catch((error) => console.log(error));
+
+      // Task 2
+
+      function getRepos(id) {
+        const repo = fetch(`https://api.github.com/users/${id}/repos`)
+          .then((result) => result.json())
+          .then((value) => console.log(value));
+      }
+
+      getRepos("oliverjam");
+    </script>
+  </body>
+</html>
