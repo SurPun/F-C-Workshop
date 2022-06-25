@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Learn HTML Forms</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Contact</h1>
+
+    <form action="https://learn-forms.netlify.com/submit/part3">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" />
+      <label for="telephone">Telephone</label>
+      <input type="tel" id="telephone" name="tel" />
+
+      <!-- Write us a message -->
+
+      <label for="message">Write us a message</label>
+      <textarea id="message" name="message"></textarea>
+
+      <!-- Preferred Contact Method -->
+
+      <fieldset>
+        <legend for="preferredMethod">Preferred contact method:</legend>
+        <input type="radio" id="contact-email" name="contact" value="email" />
+        <label for="contact-email">Email</label>
+
+        <input type="radio" id="contactTel" name="contact" value="tel" />
+        <label for="contactTel">Telephone</label>
+
+        <input type="radio" id="contactPost" name="contact" value="post" />
+        <label for="contactPost">Post</label>
+      </fieldset>
+      
+      <!-- Marketing Consent -->
+
+      <input type="checkbox" id="marketing-consent" name="marketingConsent" />
+      <label for="marketing-consent">Send me marketing info</label>
+
+      <!-- Button -->
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
