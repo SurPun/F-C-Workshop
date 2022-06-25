@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge | Functions and asynchronous JavaScript</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+    // 1
+
+      function returnsOne() {
+        return 1;
+      }
+
+      function logger(arg) {
+        console.log(arg);
+      }
+
+      logger(returnsOne);
+
+    // 2
+
+      logger(returnsOne());
+
+    // 3
+
+      const inlineFn = (event) => {
+        console.log(event.clientX, event.clientY);
+      };
+
+      window.addEventListener("click", inlineFn);
+
+    // 4
+
+      function fn(a) {
+        console.log(a);
+      }
+
+      function one(fn) {
+        fn(1);
+      }
+
+      one(fn);
+
+    //5
+
+      function asyncDouble(num, callback) {
+        setTimeout(() => console.log(num * 2), 1000);
+      }
+
+      asyncDouble(10, fn);
+
+    // --------------------------- Workshop ---------------------------
+
+      function light(str, callback) {
+        setTimeout(() => {
+          console.log(str);
+          if (callback) {
+            callback();
+          }
+        }, 1000);
+      }
+
+      light("green", () =>
+        light("amber", () =>
+          light("red", () =>
+            light("amber", () => light("green", () => light("Finished")))
+          )
+        )
+      );
+    </script>
+  </body>
+</html>
