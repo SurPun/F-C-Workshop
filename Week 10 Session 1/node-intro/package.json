@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "greet": "cowsay hello"
+  },
+
+  "devDependencies": {
+    "cowsay": "^1.5.0"
+  }
+}
