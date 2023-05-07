@@ -1,2 +1,4 @@
-# F-C-Workshop
-Founders &amp; Coders 2022
+# F&C - Workshop
+
+Learnings, Founders & Coders Partime Bootcamp (May 2022 - Aug 2022).
+
